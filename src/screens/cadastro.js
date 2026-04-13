@@ -2,7 +2,7 @@ import { TextInput, Button, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 
-export default function App() {
+export default function Cadastrado() {
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [disciplina, setDisciplina] = useState('');
@@ -25,6 +25,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>Formulário Cadastrado</Text>
+
       <View style={styles.form}>
         <TextInput
           style={styles.input}
@@ -32,30 +33,41 @@ export default function App() {
           value={nome}
           onChangeText={setNome}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Digite sua disciplina"
           value={disciplina}
           onChangeText={setDisciplina}
         />
-        <TextInput
+
+        {/* TELEFONE COM MÁSCARA */}
+        <MaskedTextInput
           style={styles.input}
-          placeholder="Digite seu Telefone"
+          mask="(99) 99999-9999"
+          placeholder="Digite seu telefone"
+          keyboardType="numeric"
           value={telefone}
-          onChangeText={setTelefone}
+          onChangeText={(text) => setTelefone(text)}
         />
-        <TextInput
+
+        {/* CPF COM MÁSCARA */}
+        <MaskedTextInput
           style={styles.input}
+          mask="999.999.999-99"
           placeholder="Digite seu CPF"
+          keyboardType="numeric"
           value={cpf}
-          onChangeText={setCPF}
+          onChangeText={(text) => setCPF(text)}
         />
         <Button title="Enviar" color="#ec0707" onPress={enviarDados} />
       </View>
 
       {dadosEnviados && (
         <View style={styles.resultado}>
-          <Text style={styles.resultadoTitulo}>Os seguintes dados foram enviados:</Text>
+          <Text style={styles.resultadoTitulo}>
+            Os seguintes dados foram enviados:
+          </Text>
           <Text>Nome: {dadosEnviados.nome}</Text>
           <Text>Telefone: {dadosEnviados.telefone}</Text>
           <Text>Disciplina: {dadosEnviados.disciplina}</Text>
