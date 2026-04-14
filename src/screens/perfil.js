@@ -19,7 +19,7 @@ export default function perfil() {
         <TextInput
           style={styles.input}
           placeholder="Digite seu RM"
-          value={nome}
+          value={rm}
           onChangeText={setRM}
         />        
         <TextInput
