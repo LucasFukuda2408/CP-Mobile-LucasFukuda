@@ -1,9 +1,10 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native/types_generated/index";
-import routes from "./src/routes";
+import { NavigationContainer } from "@react-navigation/native";
+import TabRoutes from "./tab.routes";
 
-export default function App(){
+export default function routes(){
     return(
-        <Routes/>
-    );
+        <NavigationContainer>
+            <TabRoutes/>
+        </NavigationContainer>
+    )
 }
