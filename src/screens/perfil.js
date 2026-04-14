@@ -8,7 +8,7 @@ export default function perfil() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.titulo}>Perfil do Usuário</Text>
+      <Text style={styles.titulo}>Perfil de Usuário do Criador</Text>
       <View style={styles.form}>
         <TextInput
           style={styles.input}
@@ -32,14 +32,14 @@ export default function perfil() {
         src="/profile.png"
         width={500}
         height={500}
-        alt="Picture of the author"
+        alt="Foto do Criador"
         />      
     </View>
     </SafeAreaView>
   );
 }
 
-const [rm, setRm] = useState('');
+
 navigation.navigate('Perfil', {
   nome,
   rm,

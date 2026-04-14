@@ -40,8 +40,7 @@ export default function Cadastrado() {
           value={disciplina}
           onChangeText={setDisciplina}
         />
-
-        {/* TELEFONE COM MÁSCARA */}
+        
         <MaskedTextInput
           style={styles.input}
           mask="(99) 99999-9999"
@@ -51,7 +50,7 @@ export default function Cadastrado() {
           onChangeText={(text) => setTelefone(text)}
         />
 
-        {/* CPF COM MÁSCARA */}
+
         <MaskedTextInput
           style={styles.input}
           mask="999.999.999-99"
