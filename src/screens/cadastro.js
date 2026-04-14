@@ -1,6 +1,7 @@
 import { TextInput, Button, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
+import { MaskedTextInput } from 'react-native-mask-text';
 
 export default function Cadastrado() {
   const [nome, setNome] = useState('');
