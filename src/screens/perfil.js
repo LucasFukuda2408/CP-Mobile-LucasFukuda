@@ -9,15 +9,32 @@ export default function perfil() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>Perfil do Usuário</Text>
-      <View style={styles.perfilBox}>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu Usuario"
+          value={nome}
+          onChangeText={setNome}
+        />        
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu RM"
+          value={nome}
+          onChangeText={setRM}
+        />        
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua disciplina"
+          value={disciplina}
+          onChangeText={setDisciplina}
+        />        
         <Image
-          source={{ uri: 'https://via.placeholder.com/100' }}
-          style={styles.foto}
-        />
-        <Text style={styles.texto}>Nome: {nome}</Text>
-        <Text style={styles.texto}>RM: {rm}</Text>
-        <Text style={styles.texto}>Disciplina: {disciplina}</Text>
-      </View>
+        src="/profile.png"
+        width={500}
+        height={500}
+        alt="Picture of the author"
+        />      
+    </View>
     </SafeAreaView>
   );
 }
