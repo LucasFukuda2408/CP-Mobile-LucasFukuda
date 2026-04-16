@@ -3,15 +3,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 import { MaskedTextInput } from 'react-native-mask-text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Cadastrado({ navigation }) {
+export default function CadastroScreen(){
+  const navigation = useNavigation();
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [disciplina, setDisciplina] = useState('');
   const [cpf, setCPF] = useState('');
 
   useEffect(() => {
-    async function carregarDados() {
+    async function carregarDados(){
       const dadosSalvos = await AsyncStorage.getItem('dadosUsuario');
       if (dadosSalvos) {
         const dados = JSON.parse(dadosSalvos);
@@ -25,20 +27,33 @@ export default function Cadastrado({ navigation }) {
   }, []);
 
   async function enviarDados() {
+    console.log("1. Botão clicado!");
+
     if (!nome || !telefone || !disciplina || !cpf) {
       Alert.alert("Erro", "Preencha todos os campos obrigatórios!");
+      console.log("2. Erro de validação: campos vazios.");
       return;
     }
 
     const dados = { nome, telefone, disciplina, cpf };
-    await AsyncStorage.setItem('dadosUsuario', JSON.stringify(dados));
-    
-    navigation.navigate('perfil');
+    console.log("3. Dados validados:", dados);
+
+    try {
+      await AsyncStorage.setItem('dadosUsuario', JSON.stringify(dados));
+      console.log("4. Dados salvos no AsyncStorage com sucesso!");
+      
+      navigation.navigate('Perfil', dados);
+      console.log("5. Comando de navegação disparado!");
+    } catch (error) {
+      console.error("Erro ao salvar no AsyncStorage:", error);
+      Alert.alert("Erro", "Não foi possível salvar os dados.");
+    }
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.titulo}>Formulário Cadastrado</Text>
+      <Text style={styles.titulo}>Formulário Cadastro</Text>
+
       <View style={styles.form}>
         <TextInput
           style={styles.input}
@@ -46,20 +61,23 @@ export default function Cadastrado({ navigation }) {
           value={nome}
           onChangeText={setNome}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Digite sua disciplina"
           value={disciplina}
           onChangeText={setDisciplina}
         />
+
         <MaskedTextInput
           style={styles.input}
-          mask="(99) 99999-9999"
+          mask="(99) 9999999-9999"
           placeholder="Digite seu telefone"
           keyboardType="numeric"
           value={telefone}
           onChangeText={setTelefone}
         />
+
         <MaskedTextInput
           style={styles.input}
           mask="999.999.999-99"
@@ -68,6 +86,7 @@ export default function Cadastrado({ navigation }) {
           value={cpf}
           onChangeText={setCPF}
         />
+
         <Button title="Salvar/Enviar" color="#ec0707" onPress={enviarDados} />
       </View>
     </SafeAreaView>

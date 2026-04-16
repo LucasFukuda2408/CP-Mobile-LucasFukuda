@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CP1-Mobile-LucasFukuda",
-    "slug": "CP1-Mobile-LucasFukuda",
+    "name": "CP-Mobile-LucasFukuda",
+    "slug": "CP-Mobile-LucasFukuda",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

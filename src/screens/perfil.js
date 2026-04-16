@@ -1,17 +1,25 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Perfil() {
+export default function Perfil({route}){
+  const {nome, disciplina, telefone, cpf} = route.params || {};
+
   return (
     <SafeAreaView style={styles.container}>
       <Image 
-        source={require('../../WhatsApp Image 2026-04-14 at 9.46.41 AM.jpeg')} 
+        source={require('../../assets/foto-lucas.jpeg')} 
         style={styles.foto} 
       />
       <Text style={styles.titulo}>Perfil do Criador</Text>
+      <Text style={styles.criadorTexto}>Nome: Lucas Fukuda</Text>
+      <Text style={styles.criadorTexto}>RM: 562152</Text>
+      
       <View style={styles.infoContainer}>
-        <Text style={styles.infoTexto}>Nome:Lucas Fukuda</Text>
-        <Text style={styles.infoTexto}>RM: 562152</Text>
+        <Text style={styles.subtitulo}>Dados Cadastrados</Text>
+        <Text style={styles.infoTexto}>Nome: {nome}</Text>
+        <Text style={styles.infoTexto}>Disciplina: {disciplina}</Text>
+        <Text style={styles.infoTexto}>Telefone: {telefone}</Text>
+        <Text style={styles.infoTexto}>CPF: {cpf}</Text>
       </View>
     </SafeAreaView>
   );
@@ -27,7 +35,14 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 22,
     fontWeight: "bold",
-    marginVertical: 15,
+    marginTop: 15,
+    marginBottom: 5,
+  },
+  subtitulo: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 15,
+    marginTop: 20,
   },
   foto: {
     width: 100,
@@ -35,9 +50,21 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginTop: 20,
   },
+  criadorTexto: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 2,
+  },
   infoContainer: {
     marginTop: 20,
     alignItems: "center",
+    width: '100%',
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
   },
   infoTexto: {
     fontSize: 18,

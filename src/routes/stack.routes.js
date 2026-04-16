@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Cadastrado from "../screens/cadastro";
+import Cadastro from "../screens/cadastro";
 import Perfil from "../screens/perfil";
 
 const Stack = createNativeStackNavigator();
@@ -7,8 +7,8 @@ const Stack = createNativeStackNavigator();
 export default function StackRoutes() {
   return(
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="cadastro" component={Cadastrado}/>
-      <Stack.Screen name="perfil" component={Perfil}/>
+      <Stack.Screen name="Cadastro" component={Cadastro}/>
+      <Stack.Screen name="Perfil" component={Perfil}/>
     </Stack.Navigator>
   )
 }
