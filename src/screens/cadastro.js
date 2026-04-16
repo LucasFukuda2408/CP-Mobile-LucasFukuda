@@ -13,18 +13,22 @@ export default function CadastroScreen(){
   const [cpf, setCPF] = useState('');
 
   useEffect(() => {
-    async function carregarDados(){
+  async function carregarDados() {
+    try {
       const dadosSalvos = await AsyncStorage.getItem('dadosUsuario');
-      if (dadosSalvos) {
+      if (dadosSalvos !== null) {
         const dados = JSON.parse(dadosSalvos);
-        setNome(dados.nome);
-        setTelefone(dados.telefone);
-        setDisciplina(dados.disciplina);
-        setCPF(dados.cpf);
+        setNome(dados.nome || '');
+        setTelefone(dados.telefone || '');
+        setDisciplina(dados.disciplina || '');
+        setCPF(dados.cpf || '');
       }
+    } catch (error) {
+      console.log("Erro ao carregar dados:", error);
     }
-    carregarDados();
-  }, []);
+  }
+  carregarDados();
+}, []); 
 
   async function enviarDados() {
     console.log("1. Botão clicado!");
